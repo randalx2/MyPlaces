@@ -1,24 +1,114 @@
 ﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+    <h1>My Places</h1>
+    <p class="lead">My Places is an application which returns image data based on your favourite locations</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+        <h2>Location Search</h2>
+        <p>Enter your favourite location below and we will return images and data based on popular landmarks surrounding it. This data will be saved for future convenience.</p>
+        <input type="text" id="searchID" />
+        <button onclick="searchLocation()">Search For Location</button>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
+        <h2>Post a Test Location</h2>
+        <p>You may post a new Test Location to the database here to check POST method operation. Image metadata retrieval is not guaranteed.</p>
+        <button onclick="addLocation()">Search For Location</button>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+        <h2>Update Location</h2>
+        <p>Update data specific to the Location table in the database</p>
+        <input type="text" id="searchID" />  Location ID<br/><br/>
+        <input type="text" id="locationName" />  Location Name<br /><br/>
+        <input type="text" id="latitude" />  Latitude<br /><br/>
+        <input type="text" id="longitude" />  Longitude<br /><br/>
+        <button onclick="updateLocation()">Update Location</button>
+    </div>
+    <div class="col-md-4">
+        <h2>Delete Location</h2>
+        <p>Delete a record in the Location table from the database</p>
+        <input type="text" id="searchID" />  Location ID<br /><br/>
+        <input type="text" id="locationName" />  Location Name<br /><br/>
+        <button onclick="deleteLocation()">Delete Location</button>
     </div>
 </div>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $.getJSON("api/Locations", function (result){
+                console.info(result);
+            });
+        });
+
+        $(document).ready(function () {
+            $.getJSON("api/Landmarks", function (result) {
+                console.info(result);
+            });
+        });
+
+        $(document).ready(function () {
+            $.getJSON("api/Images", function (result) {
+                console.info(result);
+            });
+        });
+
+        function searchLocation() {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "api/Locations/" + $("#searchID").val(),
+                success: function (result) {
+                    console.info(result);
+                }
+            });
+        }
+
+        function addLocation() {
+            var newLocation = {
+                "Id": 0,
+                "Name": "Test Location 1",
+                "Latitude": 87.987,
+                "Longitude": 56.234
+            }
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "api/Locations/",
+                data: newLocation,
+                success: function (result) {
+                    console.info(result);
+                }
+            });
+        }
+
+        function deleteLocation() {
+            $.ajax({
+                type: "DELETE",
+                dataType: "json",
+                url: "api/Locations/" + $("#searchID").val(),
+                success: function (result) {
+                    console.info(result);
+                }
+            });
+        }
+
+        function updateLocation() {
+            var newLocation = {
+                "Id": $("#searchID").val(),
+                "Name": $("#locationName").val(),
+                "Latitude": $("#latitude").val(),
+                "Longitude": $("#longitude").val();
+            }
+
+            $.ajax({
+                type: "PUT",
+                dataType: "json",
+                data: newLocation,
+                url: "api/Locations/" + $("#searchID").val(),
+                success: function (result) {
+                    console.info(result);
+                }
+            });
+        }
+</script>

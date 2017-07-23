@@ -15,7 +15,7 @@ namespace MyPlaces.Models
         //Each landmark will be associated with its images ==> 3 at maximum for this app
         public int LandmarkId { get; set; }
 
-        //Navigation Property
+        //Navigation Property => helps keep the relation non circular
         public Landmark Landmark { get; set; }
 
         public string Description { get; set; }

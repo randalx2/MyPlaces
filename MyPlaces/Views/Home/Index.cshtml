@@ -3,32 +3,52 @@
     <p class="lead">My Places is an application which returns image data based on your favourite locations</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Location Search</h2>
-        <p>Enter your favourite location below and we will return images and data based on popular landmarks surrounding it. This data will be saved for future convenience.</p>
-        <input type="text" id="searchID" /><br/><br/>
-        <button onclick="searchLocation()">Search For Location by ID or Name</button>
-    </div>
-    <div class="col-md-4">
-        <h2>Post a Test Location</h2>
-        <p>You can post a new Test Location to the database here to check POST method operation. Image metadata retrieval is not guaranteed.</p>
-        <button onclick="addLocation()">Post Location</button>
-    </div>
-    <div class="col-md-4">
-        <h2>Update Location</h2>
-        <p>Update data specific to the Location table in the database</p>
-        <input type="text" id="locationName" />  Location Name<br /><br/>
-        <input type="text" id="latitude" />  Latitude<br /><br/>
-        <input type="text" id="longitude" />  Longitude<br /><br/>
-        <button onclick="updateLocation()">Update Location</button>
-    </div>
-    <div class="col-md-4">
-        <h2>Delete Location</h2>
-        <p>Delete a record in the Location table from the database. Specify its ID or Name in the first text box</p>
-        <button onclick="deleteLocation()">Delete Location</button>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Location Search</h2>
+            <p>Search location by ID or Name. Name searches are recommended for live search using the Flickr API</p>
+            <input type="text" id="searchID" />  Location Name or ID<br /><br />
+            <button onclick="searchLocation()">Search For Location by ID or Name</button>
+
+            <h2>Update Location</h2>
+            <p>Update data specific to the Location table in the database. Remember to enter your old Location name above</p>
+            <input type="text" id="locationName" />  New Location Name<br /><br />
+            <input type="text" id="latitude" />  New Latitude<br /><br />
+            <input type="text" id="longitude" />  New Longitude<br /><br />
+            <button onclick="updateLocation()">Update Location</button>
+        </div>
+        <div class="col-md-4">
+            <h2>Post a Test Location</h2>
+            <p>Test POST method with test data</p>
+            <button onclick="addLocation()">Post Location</button>
+
+            <h2>Delete Location</h2>
+            <p>Delete a record in the Location table from the database. Specify its ID or Name in the first text box</p>
+            <button onclick="deleteLocation()">Delete Location</button>
+        </div>
+        <div class="col-md-4">
+            <h2>Landmark Search</h2>
+            <p>Enter your location name in the first text box to find its interesting landmarks</p>
+            <button onclick="searchLandmarks()">Landmark Search</button>
+        </div>
+        <!--<div class="col-md-4">
+            <h2>Update Location</h2>
+            <p>Update data specific to the Location table in the database</p>
+            <input type="text" id="locationName" />  Location Name<br /><br />
+            <input type="text" id="latitude" />  Latitude<br /><br />
+            <input type="text" id="longitude" />  Longitude<br /><br />
+            <button onclick="updateLocation()">Update Location</button>
+        </div>-->
+        <!--<div class="col-md-4">
+            <h2>Delete Location</h2>
+            <p>Delete a record in the Location table from the database. Specify its ID or Name in the first text box</p>
+            <button onclick="deleteLocation()">Delete Location</button>
+        </div>-->
     </div>
 </div>
+
 
 <script type="text/javascript">
         $(document).ready(function () {

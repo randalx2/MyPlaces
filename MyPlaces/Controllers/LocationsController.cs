@@ -52,6 +52,15 @@ namespace MyPlaces.Controllers
 
             db.Entry(location).State = EntityState.Modified;
 
+            Location newlocation = db.Locations.FirstOrDefault<Location>(c => c.Id == id);
+
+            if (location != null)
+            {
+                location.Name = newlocation.Name;
+                location.Latitude = newlocation.Latitude;
+                location.Longitude = newlocation.Longitude;
+            }
+
             try
             {
                 await db.SaveChangesAsync();
@@ -68,7 +77,8 @@ namespace MyPlaces.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            //return StatusCode(HttpStatusCode.NoContent);
+            return Ok(location);
         }
 
         // POST: api/Locations

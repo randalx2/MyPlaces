@@ -7,18 +7,17 @@
     <div class="col-md-4">
         <h2>Location Search</h2>
         <p>Enter your favourite location below and we will return images and data based on popular landmarks surrounding it. This data will be saved for future convenience.</p>
-        <input type="text" id="searchID" />
-        <button onclick="searchLocation()">Search For Location</button>
+        <input type="text" id="searchID" /><br/><br/>
+        <button onclick="searchLocation()">Search For Location by ID or Name</button>
     </div>
     <div class="col-md-4">
         <h2>Post a Test Location</h2>
         <p>You can post a new Test Location to the database here to check POST method operation. Image metadata retrieval is not guaranteed.</p>
-        <button onclick="addLocation()">Search For Location</button>
+        <button onclick="addLocation()">Post Location</button>
     </div>
     <div class="col-md-4">
         <h2>Update Location</h2>
         <p>Update data specific to the Location table in the database</p>
-        <input type="text" id="searchID" />  Location ID<br/><br/>
         <input type="text" id="locationName" />  Location Name<br /><br/>
         <input type="text" id="latitude" />  Latitude<br /><br/>
         <input type="text" id="longitude" />  Longitude<br /><br/>
@@ -26,9 +25,7 @@
     </div>
     <div class="col-md-4">
         <h2>Delete Location</h2>
-        <p>Delete a record in the Location table from the database</p>
-        <input type="text" id="searchID" />  Location ID<br /><br/>
-        <input type="text" id="locationName" />  Location Name<br /><br/>
+        <p>Delete a record in the Location table from the database. Specify its ID or Name in the first text box</p>
         <button onclick="deleteLocation()">Delete Location</button>
     </div>
 </div>

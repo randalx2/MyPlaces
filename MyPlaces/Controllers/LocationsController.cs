@@ -13,11 +13,14 @@ using MyPlaces.Models;
 
 namespace MyPlaces.Controllers
 {
+    [RoutePrefix("api/Locations")]
     public class LocationsController : ApiController
     {
         private MyPlacesContext db = new MyPlacesContext();
 
         // GET: api/Locations
+        [Route("")]
+        [HttpGet]
         public IQueryable<Location> GetLocations()
         {
             return db.Locations;
@@ -25,6 +28,8 @@ namespace MyPlaces.Controllers
 
         // GET: api/Locations/5
         [ResponseType(typeof(Location))]
+        [Route("{id:int}")]
+        [HttpGet]
         public async Task<IHttpActionResult> GetLocation(int id)
         {
             Location location = await db.Locations.FindAsync(id);
@@ -35,6 +40,19 @@ namespace MyPlaces.Controllers
 
             return Ok(location);
         }
+
+        // GET: api/Locations/5
+        [ResponseType(typeof(Location))]
+        [Route("{name}")]
+        [HttpGet]
+        public IEnumerable<Location> GetLocationByName(string name)
+        {
+            //Get the first contact in the contacts list with the specified id
+            Location[] locationArray = db.Locations.Where<Location>(c => c.Name.Contains(name)).ToArray();
+            return locationArray;
+        }
+
+
 
         // PUT: api/Locations/5
         [ResponseType(typeof(void))]

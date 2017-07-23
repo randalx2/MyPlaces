@@ -52,10 +52,10 @@ namespace MyPlaces.Controllers
             return locationArray;
         }
 
-
-
         // PUT: api/Locations/5
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(Location))]
+        [Route("{id:int}")]
+        [HttpPut]
         public async Task<IHttpActionResult> PutLocation(int id, Location location)
         {
             if (!ModelState.IsValid)
@@ -101,6 +101,8 @@ namespace MyPlaces.Controllers
 
         // POST: api/Locations
         [ResponseType(typeof(Location))]
+        [Route("")]
+        [HttpPost]
         public async Task<IHttpActionResult> PostLocation(Location location)
         {
             if (!ModelState.IsValid)
@@ -111,11 +113,14 @@ namespace MyPlaces.Controllers
             db.Locations.Add(location);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = location.Id }, location);
+            //return CreatedAtRoute("DefaultApi", new { id = location.Id }, location);
+            return Ok(location);
         }
 
         // DELETE: api/Locations/5
         [ResponseType(typeof(Location))]
+        [Route("{id:int}")]
+        [HttpDelete]
         public async Task<IHttpActionResult> DeleteLocation(int id)
         {
             Location location = await db.Locations.FindAsync(id);

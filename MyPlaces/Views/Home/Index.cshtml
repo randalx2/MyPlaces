@@ -69,8 +69,8 @@
     <table id="landmark" cellpadding="2" cellspacing="2" border="1" width="400">
         <tr>
             <td style="background-color: gray; color: white">LandmarkID</td>
+            <td style="background-color: gray; color: white">LocationID</td>
             <td style="background-color: gray; color: white">Landmark Title</td>
-            <td style="background-color: gray; color: white">Location Name</td>
         </tr>
     </table>
 </div>
@@ -81,7 +81,7 @@
     <table id="imageData" cellpadding="2" cellspacing="2" border="1" width="400">
         <tr>
             <td style="background-color: gray; color: white">ImageID</td>
-            <td style="background-color: gray; color: white">Landmark Name</td>
+            <td style="background-color: gray; color: white">LandmarkID</td>
             <td style="background-color: gray; color: white">Image1</td>
             <td style="background-color: gray; color: white">Image2</td>
             <td style="background-color: gray; color: white">Image3</td>
@@ -144,11 +144,22 @@
             $.getJSON("api/Landmarks", function (result) {
                 console.info(result);
             });
+            $.getJSON("api/Landmarks").done(function (data) {
+                $.each(data, function (key, item) {
+                    $('#landmark').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LocationId + "</td>" + "<td>" + item.Title + "</td></tr>");
+                });
+            });
         });
 
             $(document).ready(function () {
                 $.getJSON("api/Images", function (result) {
                     console.info(result);
+                });
+                $.getJSON("api/Images").done(function (data) {
+                    $.each(data, function (key, item) {
+                        $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkID + "</td>" + "<td>" + item.Description +
+                            + "</td>" + "<td>" + item.Image1 + "</td>" + "<td>" + item.Image2 + "</td>" + "<td>" +item.Image3 + "</td></tr>");
+                    });
                 });
             });
 

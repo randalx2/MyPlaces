@@ -49,13 +49,96 @@
     </div>
 </div>
 
+<br/>
+ 
+<div>
+    <h2>Display Location Data</h2>
+    <table id="location" cellpadding="2" cellspacing="2" border="1" width="400">
+        <tr>
+            <td style="background-color: gray; color: white">LocationID</td>
+            <td style="background-color: gray; color: white">Location Name</td>
+            <td style="background-color: gray; color: white">Latitude</td>
+            <td style="background-color: gray; color:white">Longitude</td>
+        </tr>
+    </table>
+</div>
+
+<br />
+<div>
+    <h2>Display Landmark Data</h2>
+    <table id="landmark" cellpadding="2" cellspacing="2" border="1" width="400">
+        <tr>
+            <td style="background-color: gray; color: white">LandmarkID</td>
+            <td style="background-color: gray; color: white">Landmark Title</td>
+            <td style="background-color: gray; color: white">Location Name</td>
+        </tr>
+    </table>
+</div>
+
+<br />
+<div>
+    <h2>Display Image Data</h2>
+    <table id="imageData" cellpadding="2" cellspacing="2" border="1" width="400">
+        <tr>
+            <td style="background-color: gray; color: white">ImageID</td>
+            <td style="background-color: gray; color: white">Landmark Name</td>
+            <td style="background-color: gray; color: white">Image1</td>
+            <td style="background-color: gray; color: white">Image2</td>
+            <td style="background-color: gray; color: white">Image3</td>
+        </tr>
+    </table>
+</div>
+<br/>
+
+<h2>Landmark Images</h2> 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="#" alt="#">
+                <div class="caption">
+                    <h3>Landmark Name</h3>
+                    <p>Image Description</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="#" alt="#">
+                <div class="caption">
+                    <h3>Landmark Name</h3>
+                    <p>Image Description</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="#" alt="#">
+                <div class="caption">
+                    <h3>Landmark Name</h3>
+                    <p>Image Description</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 <script type="text/javascript">
-        $(document).ready(function () {
-            $.getJSON("api/Locations", function (result){
-                console.info(result);
+    $(document).ready(function () {
+        $.getJSON("api/Locations", function (result) {
+            console.info(result);
+        });
+        $.getJSON("api/Locations").done(function (data) {
+            $.each(data, function (key, item) {
+                $('#location').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.Name + "</td>" + "<td>" + item.Latitude + "</td>" + "<td>" + item.Longitude + "</td></tr>");
             });
         });
+    });
+
 
         $(document).ready(function () {
             $.getJSON("api/Landmarks", function (result) {
@@ -63,69 +146,69 @@
             });
         });
 
-        $(document).ready(function () {
-            $.getJSON("api/Images", function (result) {
-                console.info(result);
-            });
-        });
-
-        function searchLocation() {
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: "api/Locations/" + $("#searchID").val(),
-                success: function (result) {
+            $(document).ready(function () {
+                $.getJSON("api/Images", function (result) {
                     console.info(result);
-                }
+                });
             });
-        }
 
-        function addLocation() {
-            var newLocation = {
-                "Id": 0,
-                "Name": "Test Location 1",
-                "Latitude": 87.987,
-                "Longitude": 56.234
+            function searchLocation() {
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "api/Locations/" + $("#searchID").val(),
+                    success: function (result) {
+                        console.info(result);
+                    }
+                });
             }
 
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "api/Locations/",
-                data: newLocation,
-                success: function (result) {
-                    console.info(result);
+            function addLocation() {
+                var newLocation = {
+                    "Id": 0,
+                    "Name": "Test Location 1",
+                    "Latitude": 87.987,
+                    "Longitude": 56.234
                 }
-            });
-        }
 
-        function deleteLocation() {
-            $.ajax({
-                type: "DELETE",
-                dataType: "json",
-                url: "api/Locations/" + $("#searchID").val(),
-                success: function (result) {
-                    console.info(result);
-                }
-            });
-        }
-
-        function updateLocation() {
-            var newLocation = {
-                "Id": $("#searchID").val(),
-                "Name": $("#locationName").val(),
-                "Latitude": $("#latitude").val(),
-                "Longitude": $("#longitude").val()
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "api/Locations/",
+                    data: newLocation,
+                    success: function (result) {
+                        console.info(result);
+                    }
+                });
             }
 
-            $.ajax({
-                type: "PUT",
-                dataType: "json",
-                data: newLocation,
-                url: "api/Locations/" + $("#searchID").val(),
-                success: function (result) {
-                    console.info(result);
+            function deleteLocation() {
+                $.ajax({
+                    type: "DELETE",
+                    dataType: "json",
+                    url: "api/Locations/" + $("#searchID").val(),
+                    success: function (result) {
+                        console.info(result);
+                    }
+                });
+            }
+
+            function updateLocation() {
+                var newLocation = {
+                    "Id": $("#searchID").val(),
+                    "Name": $("#locationName").val(),
+                    "Latitude": $("#latitude").val(),
+                    "Longitude": $("#longitude").val()
                 }
-            });
+
+                $.ajax({
+                    type: "PUT",
+                    dataType: "json",
+                    data: newLocation,
+                    url: "api/Locations/" + $("#searchID").val(),
+                    success: function (result) {
+                        console.info(result);
+                    }
+                });
         }
 </script>

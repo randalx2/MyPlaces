@@ -82,9 +82,10 @@
         <tr>
             <td style="background-color: gray; color: white">ImageID</td>
             <td style="background-color: gray; color: white">LandmarkID</td>
-            <td style="background-color: gray; color: white">Image1</td>
-            <td style="background-color: gray; color: white">Image2</td>
-            <td style="background-color: gray; color: white">Image3</td>
+            <td style="background-color: gray; color: white">Description</td>
+            <td style="background-color: gray; color: white">Image1<img id="Image1" src="" /></td>
+            <td style="background-color: gray; color: white">Image2<img id="Image2" src="" /></td>
+            <td style="background-color: gray; color: white">Image3<img id="Image3" src="" /></td>
         </tr>
     </table>
 </div>
@@ -149,7 +150,7 @@
                     $('#landmark').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LocationId + "</td>" + "<td>" + item.Title + "</td></tr>");
                 });
             });
-        });
+         });
 
             $(document).ready(function () {
                 $.getJSON("api/Images", function (result) {
@@ -158,7 +159,7 @@
                 $.getJSON("api/Images").done(function (data) {
                     $.each(data, function (key, item) {
                         $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkID + "</td>" + "<td>" + item.Description +
-                            + "</td>" + "<td>" + item.Image1 + "</td>" + "<td>" + item.Image2 + "</td>" + "<td>" +item.Image3 + "</td></tr>");
+                            + "</td>" + "<td>" + btoa(item.Image1) + "</td>" + "<td>" + btoa(item.Image2) + "</td>" + "<td>" + btoa(item.Image3) + "</td></tr>");
                     });
                 });
             });

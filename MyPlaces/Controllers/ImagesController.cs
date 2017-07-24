@@ -11,6 +11,12 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using MyPlaces.Models;
 
+using System.Drawing;
+
+//For catching the JSON image data
+using System.Runtime.Serialization.Json;
+
+
 namespace MyPlaces.Controllers
 {
     public class ImagesController : ApiController
@@ -20,8 +26,19 @@ namespace MyPlaces.Controllers
         // GET: api/Images
         public IQueryable<Images> GetImages()
         {
+            //Convert the image attbs to base 64 string
+            /*
+            foreach (Images image in db.Images)
+            {
+                Convert.ToBase64String(image.Image1);
+                Convert.ToBase64String(image.Image2);
+                Convert.ToBase64String(image.Image3); 
+            }
+            */
             return db.Images;
         }
+
+        //Provide a url Route for this function
 
         // GET: api/Images/5
         [ResponseType(typeof(Images))]
@@ -32,7 +49,7 @@ namespace MyPlaces.Controllers
             {
                 return NotFound();
             }
-
+            
             return Ok(images);
         }
 

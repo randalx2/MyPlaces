@@ -16,7 +16,7 @@ namespace MyPlaces.Migrations
         }
 
         //Method for seeding image Batman-Jim-Lee.jpg
-
+        
         public byte[] ImageToArray()
         {
             Image img = Image.FromFile(@"C:\Batman-Jim-Lee.jpg");
@@ -43,6 +43,9 @@ namespace MyPlaces.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            //Provide some test images
+            
 
             //Seed our db with test data
             context.Locations.AddOrUpdate(x => x.Id,

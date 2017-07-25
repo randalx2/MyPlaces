@@ -8,7 +8,8 @@
     <div class="row">
         <div class="col-md-4">
             <h2>Location Search</h2>
-            <p>Search location by ID or Name. Name searches are recommended for live search using the Flickr API. Photos related to your location search will be displayed at the bottom of the page.</p>
+            <p>Search location by ID or Name. The location table will be filtered for saved locations.</p>
+            <p>If your location is not found in our database, we will attempt to get data from flickr and update accordingly</p>
             <input type="text" id="searchID" />  Location Name or ID<br /><br />
             <button onclick="searchLocation()">Search For Location by ID or Name</button>
 
@@ -30,7 +31,8 @@
         </div>
         <div class="col-md-4">
             <h2>Landmark Search</h2>
-            <p>Enter your location name in the first text box to find its interesting landmarks</p>
+            <p>Enter your landmark name to search / filter saved landmarks. If the landmark is not found, we will search on flickr and update accordingly</p>
+            <input type="text" id="landmarkName" /> Landmark Name<br /><br />
             <button onclick="searchLandmarks()">Landmark Search</button>
         </div>
         <!--<div class="col-md-4">
@@ -180,6 +182,24 @@
                 $.getJSON("api/Locations/" + $("#searchID").val()).done(function (data) {
                     $.each(data, function (key, item) {                       
                         $('#location').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.Name + "</td>" + "<td>" + item.Latitude + "</td>" + "<td>" + item.Longitude + "</td></tr>");
+                    });
+                });
+            }
+
+            function searchLandmarks() {
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "api/Landmarks/" + $("#landmarkName").val(),
+                    success: function (result) {
+                        console.info(result);
+                    }
+                });
+
+                $('#landmark tbody').remove();
+                $.getJSON("api/Landmarks/" + $("#landmarkName").val()).done(function (data) {
+                    $.each(data, function (key, item) {
+                        $('#landmark').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LocationId + "</td>" + "<td>" + item.Title + "</td></tr>");
                     });
                 });
             }

@@ -37,6 +37,18 @@ namespace MyPlaces.Controllers
             return Ok(landmark);
         }
 
+        // GET: api/Landmarks/5
+        [ResponseType(typeof(Landmark))]
+        [Route("{name}")]
+        [HttpGet]
+        public IEnumerable<Landmark> GetLandmarkByName(string name)
+        {
+            //Get the first contact in the contacts list with the specified id
+            Landmark[] landmarkArray = db.Landmarks.Where<Landmark>(c => c.Title.Contains(name)).ToArray();
+
+            return landmarkArray;
+        }
+
         // PUT: api/Landmarks/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutLandmark(int id, Landmark landmark)

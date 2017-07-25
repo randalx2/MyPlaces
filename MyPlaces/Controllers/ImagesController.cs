@@ -25,6 +25,8 @@ namespace MyPlaces.Controllers
         private MyPlacesContext db = new MyPlacesContext();
 
         // GET: api/Images
+        [Route("")]
+        [HttpGet]
         public IQueryable<Images> GetImages()
         {
             //Convert the image attbs to base 64 string
@@ -46,6 +48,8 @@ namespace MyPlaces.Controllers
 
         // GET: api/Images/5
         [ResponseType(typeof(Images))]
+        [Route("{id:int}")]
+        [HttpGet]
         public async Task<IHttpActionResult> GetImages(int id)
         {
             Images images = await db.Images.FindAsync(id);
@@ -55,6 +59,21 @@ namespace MyPlaces.Controllers
             }
             
             return Ok(images);
+        }
+
+        // GET: api/Images/5
+        [ResponseType(typeof(Images))]
+        [Route("{name}")]
+        [HttpGet]
+        public IEnumerable<Images> GetImageByName(string name)
+        {
+            //Get the first contact in the contacts list with the specified id
+            //Pass in the location name and check if the main image description contains it
+
+            //This return all image objects including main description, landmark id and secondary images
+            Images[] ImageArray = db.Images.Where<Images>(c => c.Description.Contains(name)).ToArray();
+
+            return ImageArray;
         }
 
         // PUT: api/Images/5

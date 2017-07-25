@@ -49,6 +49,7 @@ namespace MyPlaces.Controllers
         {
             //Get the first contact in the contacts list with the specified id
             Location[] locationArray = db.Locations.Where<Location>(c => c.Name.Contains(name)).ToArray();
+
             return locationArray;
         }
 

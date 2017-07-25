@@ -99,14 +99,14 @@
     <a target="_blank" href="#">
         <img id="Image2" src="" width="300" height="200">
     </a>
-    <div class="desc"></div>
+    <div class="desc"><span id="Description"></span></div>
 </div>
 
 <div class="gallery">
     <a target="_blank" href="#">
         <img id="Image3" src="" width="300" height="200">
     </a>
-    <div class="desc"></div>
+    <div class="desc"><span id="Description"></span></div>
 </div>
 
 <br/>
@@ -141,13 +141,14 @@
                     console.info(result);
                 });
 
+                
                 $.getJSON("api/Images").done(function (data) {
                     $.each(data, function (key, item) {
                         $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkId + "</td>" + "<td>" + item.Description + "</td></tr>");
+                        document.getElementById("Description").innerHTML = item.Description;
                         document.getElementById("Image1").src = "data:image/jpg;base64," + item.Image1;
                         document.getElementById("Image2").src = "data:image/jpg;base64," + item.Image2;
                         document.getElementById("Image3").src = "data:image/jpg;base64," + item.Image3;
-                        document.getElementById("Description").innerHTML = item.Description;
                     });
                 });
             });

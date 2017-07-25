@@ -35,6 +35,9 @@ namespace MyPlaces.Controllers
                 Convert.ToBase64String(image.Image3); 
             }
             */
+
+            //Avoid getting all image objects for the user as it consumes the main thread
+            
             return db.Images;
         }
 

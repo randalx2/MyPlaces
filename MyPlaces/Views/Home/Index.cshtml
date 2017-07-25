@@ -96,7 +96,7 @@
             <td style="background-color: gray; color: white">ImageID</td>
             <td style="background-color: gray; color: white">LandmarkID</td>
             <td style="background-color: gray; color: white">Description</td>
-            <td style="background-color: gray; color: white">Image1<img id="Image1" src="" /></td>
+            <td style="background-color: gray; color: white">Image1<img id="Image1" src=""/></td>
             <td style="background-color: gray; color: white">Image2<img id="Image2" src="" /></td>
             <td style="background-color: gray; color: white">Image3<img id="Image3" src="" /></td>
         </tr>
@@ -169,10 +169,12 @@
                 $.getJSON("api/Images", function (result) {
                     console.info(result);
                 });
+
+
                 $.getJSON("api/Images").done(function (data) {
                     $.each(data, function (key, item) {
                         $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkID + "</td>" + "<td>" + item.Description +
-                            + "</td>" + "<td>" + btoa(item.Image1) + "</td>" + "<td>" + btoa(item.Image2) + "</td>" + "<td>" + btoa(item.Image3) + "</td></tr>");
+                            + "</td>" + "<td>" + item.Image1 + "</td>" + "<td>" + item.Image2 + "</td>" + "<td>" + item.Image3 + "</td></tr>");
                     });
                 });
             });

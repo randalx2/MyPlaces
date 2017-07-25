@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-4">
             <h2>Location Search</h2>
-            <p>Search location by ID or Name. For debugging purposes</p>
+            <p>Search location by ID or Name. Name searches are recommended for live search using the Flickr API. Photos related to your location search will be displayed at the bottom of the page.</p>
             <input type="text" id="searchID" />  Location Name or ID<br /><br />
             <button onclick="searchLocation()">Search For Location by ID or Name</button>
 
@@ -29,13 +29,8 @@
             <button onclick="deleteLocation()">Delete Location</button>
         </div>
         <div class="col-md-4">
-            <h2>Image Search</h2>
-            <p>Search location Photos by name. Results will be displayed below</p>
-            <input type="text" id="searchID" />  Image Location Name or ID<br /><br />
-            <button onclick="searchLocationImage()">Search For Location Images by ID or Name</button>
-            <br/>
             <h2>Landmark Search</h2>
-            <p>Enter your location name in the first text box to find its interesting landmarks. For Debugging Purposes</p>
+            <p>Enter your location name in the first text box to find its interesting landmarks</p>
             <button onclick="searchLandmarks()">Landmark Search</button>
         </div>
         <!--<div class="col-md-4">
@@ -57,7 +52,7 @@
 <br/>
  
 <div>
-    <h2>Saved Location Data</h2>
+    <h2>Display Location Data</h2>
     <table id="location" cellpadding="2" cellspacing="2" border="1" width="400">
         <tr>
             <td style="background-color: gray; color: white">LocationID</td>
@@ -70,7 +65,7 @@
 
 <br />
 <div>
-    <h2>Saved Landmark Data</h2>
+    <h2>Display Landmark Data</h2>
     <table id="landmark" cellpadding="2" cellspacing="2" border="1" width="400">
         <tr>
             <td style="background-color: gray; color: white">LandmarkID</td>
@@ -83,7 +78,7 @@
 <br />
 
 <div>
-    <h2>Saved Image Data</h2>
+    <h2>Display Image Data</h2>
     <table id="imageData" cellpadding="2" cellspacing="2" border="1" width="545">
         <tr>
             <td style="background-color: gray; color: white">ImageID</td>
@@ -93,8 +88,6 @@
     </table>
 </div>
 <br/>
-
-<!--For Displaying the images for each image object. 3 pictures per Image Object-->
 <div class="container"><h2>Retrieved Images</h2></div>
 <br/>
 <div class="MyContainer">

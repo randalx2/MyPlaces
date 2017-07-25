@@ -89,28 +89,11 @@
 </div>
 
 <div class="gallery">
-    <a target="_blank" href="#">
+    <!--<a target="#" href="#">
         <img id="Image1" src="" width="300" height="200">
     </a>
-    <div class="desc"><span id="Description"></span></div>
+    <div class="desc"><span id="Description"></span></div>-->
 </div>
-
-<div class="gallery">
-    <a target="_blank" href="#">
-        <img id="Image2" src="" width="300" height="200">
-    </a>
-    <div class="desc"><span id="Description"></span></div>
-</div>
-
-<div class="gallery">
-    <a target="_blank" href="#">
-        <img id="Image3" src="" width="300" height="200">
-    </a>
-    <div class="desc"><span id="Description"></span></div>
-</div>
-
-<br/>
-<br/>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -141,14 +124,28 @@
                     console.info(result);
                 });
 
-                
+                var i = 1;
                 $.getJSON("api/Images").done(function (data) {
                     $.each(data, function (key, item) {
                         $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkId + "</td>" + "<td>" + item.Description + "</td></tr>");
-                        document.getElementById("Description").innerHTML = item.Description;
-                        document.getElementById("Image1").src = "data:image/jpg;base64," + item.Image1;
-                        document.getElementById("Image2").src = "data:image/jpg;base64," + item.Image2;
-                        document.getElementById("Image3").src = "data:image/jpg;base64," + item.Image3;
+
+                        $('.gallery').append("<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
+                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>");
+                        document.getElementById("Image" + i).src = "data:image/jpg;base64," + item.Image1;
+
+                        i = i + 1;
+
+                        $('.gallery').append("<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
+                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>");
+                        document.getElementById("Image" + i).src = "data:image/jpg;base64," + item.Image2;
+
+                        i = i + 1;
+
+                        $('.gallery').append("<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
+                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>");
+                        document.getElementById("Image" + i).src = "data:image/jpg;base64," + item.Image3;
+
+                        i = i + 1;                
                     });
                 });
             });

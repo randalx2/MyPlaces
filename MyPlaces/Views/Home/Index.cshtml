@@ -87,17 +87,11 @@
         </tr>
     </table>
 </div>
-
 <br/>
+<div class="container"><h2>Retrieved Images</h2></div>
 <br/>
-
-<div class="container">
-    <div class="gallery">
-        <!--<a target="#" href="#">
-            <img id="Image1" src="" width="300" height="200">
-        </a>
-        <div class="desc"><span id="Description"></span></div>-->
-    </div>
+<div class="MyContainer">
+    <!--Dynamic Javascript to fill the gallery here-->
 </div>
 
 
@@ -135,20 +129,20 @@
                     $.each(data, function (key, item) {
                         $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkId + "</td>" + "<td>" + item.Description + "</td></tr>");
 
-                        $('.gallery').append("<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
-                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>");
+                        $('.MyContainer').append("<div class=\"gallery\">" + "<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
+                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>" + "</div>");
                         document.getElementById("Image" + i).src = "data:image/jpg;base64," + item.Image1;
 
                         i = i + 1;
 
-                        $('.gallery').append("<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
-                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>");
+                        $('.MyContainer').append("<div class=\"gallery\">" + "<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
+                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>" + "</div>");
                         document.getElementById("Image" + i).src = "data:image/jpg;base64," + item.Image2;
 
                         i = i + 1;
 
-                        $('.gallery').append("<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
-                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>");
+                        $('.MyContainer').append("<div class=\"gallery\">" + "<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
+                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>" + "</div>");
                         document.getElementById("Image" + i).src = "data:image/jpg;base64," + item.Image3;
 
                         i = i + 1;                

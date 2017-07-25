@@ -34,6 +34,11 @@
             <p>Enter your landmark name to search / filter saved landmarks. If the landmark is not found, we will search on flickr and update accordingly</p>
             <input type="text" id="landmarkName" /> Landmark Name<br /><br />
             <button onclick="searchLandmarks()">Landmark Search</button>
+            <br/>
+            <h2>Image Search</h2>
+            <p>Enter the names of locations to filter through images in the database. If the corresponding image info is not found, we will search on flickr and update accordingly</p>
+            <input type="text" id="imageName" /> Image Location Name<br /><br />
+            <button onclick="searchImages()">Image Search</button>
         </div>
         <!--<div class="col-md-4">
             <h2>Update Location</h2>
@@ -107,6 +112,8 @@
 <br/>
 <div class="container"><h2>Retrieved Images</h2></div>
 <br/>
+
+
 <div class="MyContainer">
     <!--Dynamic Javascript to fill the gallery here-->
 </div>
@@ -200,6 +207,25 @@
                 $.getJSON("api/Landmarks/" + $("#landmarkName").val()).done(function (data) {
                     $.each(data, function (key, item) {
                         $('#landmark').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LocationId + "</td>" + "<td>" + item.Title + "</td></tr>");
+                    });
+                });
+            }
+
+            function searchImages() {
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "api/Images/" + $("#imageName").val(),
+                    success: function (result) {
+                        console.info(result);
+                    }
+                });
+
+                var i = 1;
+                $('#imageData tbody').remove();
+                $.getJSON("api/Images/" + $("#imageName").val()).done(function (data) {
+                    $.each(data, function (key, item) {
+                        $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkId + "</td>" + "<td>" + item.Description + "</td></tr>"); 
                     });
                 });
             }

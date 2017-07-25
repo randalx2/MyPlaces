@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-4">
             <h2>Location Search</h2>
-            <p>Search location by ID or Name. Name searches are recommended for live search using the Flickr API</p>
+            <p>Search location by ID or Name. Name searches are recommended for live search using the Flickr API. Photos related to your location search will be displayed at the bottom of the page.</p>
             <input type="text" id="searchID" />  Location Name or ID<br /><br />
             <button onclick="searchLocation()">Search For Location by ID or Name</button>
 
@@ -76,59 +76,41 @@
 </div>
 
 <br />
+
 <div>
     <h2>Display Image Data</h2>
-    <table id="imageData" cellpadding="2" cellspacing="2" border="1" width="400">
+    <table id="imageData" cellpadding="2" cellspacing="2" border="1" width="545">
         <tr>
             <td style="background-color: gray; color: white">ImageID</td>
             <td style="background-color: gray; color: white">LandmarkID</td>
             <td style="background-color: gray; color: white">Description</td>
-            <td style="background-color: gray; color: white">Image1<img id="Image1" src="" /></td>
-            <td style="background-color: gray; color: white">Image1<img id="Image2" src="" /></td>
-            <td style="background-color: gray; color: white">Image1<img id="Image3" src="" /></td>
-            <!--<td style="background-color: gray; color: white">Image2<img id="Image2" src="" /></td>
-            <td style="background-color: gray; color: white">Image3<img id="Image3" src="" /></td>-->
         </tr>
     </table>
 </div>
-<br/>
 
-<h2>Landmark Images</h2> 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img src="#" alt="#">
-                <div class="caption">
-                    <h3>Landmark Name</h3>
-                    <p>Image Description</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img src="#" alt="#">
-                <div class="caption">
-                    <h3>Landmark Name</h3>
-                    <p>Image Description</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img src="#" alt="#">
-                <div class="caption">
-                    <h3>Landmark Name</h3>
-                    <p>Image Description</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
+<div class="gallery">
+    <a target="_blank" href="#">
+        <img id="Image1" src="" width="300" height="200">
+    </a>
+    <div class="desc"><span id="Description"></span></div>
 </div>
 
+<div class="gallery">
+    <a target="_blank" href="#">
+        <img id="Image2" src="" width="300" height="200">
+    </a>
+    <div class="desc"></div>
+</div>
+
+<div class="gallery">
+    <a target="_blank" href="#">
+        <img id="Image3" src="" width="300" height="200">
+    </a>
+    <div class="desc"></div>
+</div>
+
+<br/>
+<br/>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -161,8 +143,11 @@
 
                 $.getJSON("api/Images").done(function (data) {
                     $.each(data, function (key, item) {
-                        $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkId + "</td>" + "<td>" + item.Description +
-                            + "</td>" + "<td>" + (document.getElementById("Image1").src = "data:image/png;base64," + item.Image1) + "</td>" + "<td>" + (document.getElementById("Image2").src = "data:image/png;base64," + item.Image2) + "</td>" + "<td>" + (document.getElementById("Image3").src = "data:image/png;base64," + item.Image3) + "</td></tr>");
+                        $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkId + "</td>" + "<td>" + item.Description + "</td></tr>");
+                        document.getElementById("Image1").src = "data:image/jpg;base64," + item.Image1;
+                        document.getElementById("Image2").src = "data:image/jpg;base64," + item.Image2;
+                        document.getElementById("Image3").src = "data:image/jpg;base64," + item.Image3;
+                        document.getElementById("Description").innerHTML = item.Description;
                     });
                 });
             });

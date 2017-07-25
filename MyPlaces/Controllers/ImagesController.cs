@@ -27,6 +27,7 @@ namespace MyPlaces.Controllers
         public IQueryable<Images> GetImages()
         {
             //Convert the image attbs to base 64 string
+
             /*
             foreach (Images image in db.Images)
             {
@@ -35,6 +36,7 @@ namespace MyPlaces.Controllers
                 Convert.ToBase64String(image.Image3); 
             }
             */
+
             return db.Images;
         }
 

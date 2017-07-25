@@ -13,7 +13,7 @@ using MyPlaces.Models;
 
 namespace MyPlaces.Controllers
 {
-    [RoutePrefix("api/Locations")]
+    [RoutePrefix("api/Landmarks")]
     public class LandmarksController : ApiController
     {
         private MyPlacesContext db = new MyPlacesContext();

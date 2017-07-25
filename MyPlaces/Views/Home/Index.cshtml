@@ -14,7 +14,7 @@
             <button onclick="searchLocation()">Search For Location by ID or Name</button>
 
             <h2>Update Location</h2>
-            <p>Update data specific to the Location table in the database. Remember to enter your old Location name above</p>
+            <p>Update data specific to the Location table in the database. Remember to enter your old Location ID above first</p>
             <input type="text" id="locationName" />  New Location Name<br /><br />
             <input type="text" id="latitude" />  New Latitude<br /><br />
             <input type="text" id="longitude" />  New Longitude<br /><br />
@@ -223,9 +223,28 @@
 
                 var i = 1;
                 $('#imageData tbody').remove();
+                $('.gallery').remove();
                 $.getJSON("api/Images/" + $("#imageName").val()).done(function (data) {
                     $.each(data, function (key, item) {
                         $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkId + "</td>" + "<td>" + item.Description + "</td></tr>"); 
+
+                        $('.MyContainer').append("<div class=\"gallery\">" + "<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
+                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>" + "</div>");
+                        document.getElementById("Image" + i).src = "data:image/jpg;base64," + item.Image1;
+
+                        i = i + 1;
+
+                        $('.MyContainer').append("<div class=\"gallery\">" + "<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
+                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>" + "</div>");
+                        document.getElementById("Image" + i).src = "data:image/jpg;base64," + item.Image2;
+
+                        i = i + 1;
+
+                        $('.MyContainer').append("<div class=\"gallery\">" + "<a target=\"#\" href=\"#\">" + "<img id=\"Image" + i + "\" src=\"\" width=\"300\" height=\"200\">" + "</a >" +
+                            "<div class=\"desc\">" + item.Description + "<span id=\"Description" + i + "\"></span></div>" + "</div>");
+                        document.getElementById("Image" + i).src = "data:image/jpg;base64," + item.Image3;
+
+                        i = i + 1;
                     });
                 });
             }

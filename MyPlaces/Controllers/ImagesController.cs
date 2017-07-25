@@ -19,6 +19,7 @@ using System.Runtime.Serialization.Json;
 
 namespace MyPlaces.Controllers
 {
+    [RoutePrefix("api/Locations")]
     public class ImagesController : ApiController
     {
         private MyPlacesContext db = new MyPlacesContext();

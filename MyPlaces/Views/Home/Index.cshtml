@@ -158,7 +158,7 @@
                 });
                 $.getJSON("api/Images").done(function (data) {
                     $.each(data, function (key, item) {
-                        $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkID + "</td>" + "<td>" + item.Description +
+                        $('#imageData').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.LandmarkId + "</td>" + "<td>" + item.Description +
                             + "</td>" + "<td>" + btoa(item.Image1) + "</td>" + "<td>" + btoa(item.Image2) + "</td>" + "<td>" + btoa(item.Image3) + "</td></tr>");
                     });
                 });

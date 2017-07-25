@@ -175,6 +175,13 @@
                         console.info(result);
                     }
                 });
+
+                $('#location tbody').remove();
+                $.getJSON("api/Locations/" + $("#searchID").val()).done(function (data) {
+                    $.each(data, function (key, item) {                       
+                        $('#location').append("<tr><td>" + item.Id + "</td>" + "<td>" + item.Name + "</td>" + "<td>" + item.Latitude + "</td>" + "<td>" + item.Longitude + "</td></tr>");
+                    });
+                });
             }
 
             function addLocation() {

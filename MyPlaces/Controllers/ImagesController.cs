@@ -124,14 +124,19 @@ namespace MyPlaces.Controllers
                 {
 
                     //Only taking the first photos description due to versioning of the db
-                    myImageObject.Description = photos[0].Description + "\n" + photos[0].DateUploaded;
+                    myImageObject.Description = "Description: " + photos[0].Description + "\n Date Uploaded: " + photos[0].DateUploaded +
+                                                "\n Date Taken: " + photos[0].DateTaken + "\n Place ID: " + photos[0].PlaceId +
+                                                "\n Latitude: " + photos[0].Latitude + "\n Longitude: " + photos[0].Longitude;
+                                                
                     myImageObject.Image1 = ImageToArray(photos[0].LargeUrl);
                     myImageObject.Image2 = ImageToArray(photos[1].LargeUrl);
                     myImageObject.Image3 = ImageToArray(photos[2].LargeUrl);
 
                     //Save this to the db
                     db.Images.Add(myImageObject);
-             
+
+                    //NB The above object is not saved in the db persistently until you use the db.SaveChanges method
+                    
                     //Add this to our list
                     myImageList.Add(myImageObject);
 

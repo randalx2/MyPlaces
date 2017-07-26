@@ -102,7 +102,7 @@ namespace MyPlaces.Controllers
             //This return all image objects including main description, landmark id and secondary images
             Images[] ImageArray = db.Images.Where<Images>(c => c.Description.Contains(name)).ToArray();
 
-            /*
+            
             //If the location or any duplicate of it is not found in the ImageArray the array size count will be O
             //To make it easier convert this array to a list object for now
             List<Images> myImageList = ImageArray.ToList<Images>();
@@ -140,8 +140,7 @@ namespace MyPlaces.Controllers
                 }
                 
             }
-            */
-   
+            
             return ImageArray;
         }
 

@@ -29,16 +29,6 @@ namespace MyPlaces.Controllers
         [HttpGet]
         public IQueryable<Images> GetImages()
         {
-            //Convert the image attbs to base 64 string
-            /*
-            foreach (Images image in db.Images)
-            {
-                Convert.ToBase64String(image.Image1);
-                Convert.ToBase64String(image.Image2);
-                Convert.ToBase64String(image.Image3); 
-            }
-            */
-
             //Avoid getting all image objects for the user as it consumes the main thread
             
             return db.Images;
@@ -72,6 +62,8 @@ namespace MyPlaces.Controllers
 
             //This return all image objects including main description, landmark id and secondary images
             Images[] ImageArray = db.Images.Where<Images>(c => c.Description.Contains(name)).ToArray();
+
+            //If the location or any duplicate of it is not found in the ImageArray the array size count will be O
 
             return ImageArray;
         }

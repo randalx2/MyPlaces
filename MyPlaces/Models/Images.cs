@@ -19,6 +19,8 @@ namespace MyPlaces.Models
         public Landmark Landmark { get; set; }
 
         public string Description { get; set; }
+        public string Description2 { get; set; }
+        public string Description3 { get; set; }
 
         //Main Image == Try to give 3 images per landmark
         //Save images as binary data ==> byte arrays

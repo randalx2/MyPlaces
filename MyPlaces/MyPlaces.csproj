@@ -198,6 +198,14 @@
     <Compile Include="Migrations\201707231840320_Initial.Designer.cs">
       <DependentUpon>201707231840320_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707261801079_AddDescription2ColumnToImagesTable.cs" />
+    <Compile Include="Migrations\201707261801079_AddDescription2ColumnToImagesTable.Designer.cs">
+      <DependentUpon>201707261801079_AddDescription2ColumnToImagesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707261804596_AddDescription3ColumnToImagesTable.cs" />
+    <Compile Include="Migrations\201707261804596_AddDescription3ColumnToImagesTable.Designer.cs">
+      <DependentUpon>201707261804596_AddDescription3ColumnToImagesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Images.cs" />
     <Compile Include="Models\Landmark.cs" />
@@ -280,6 +288,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201707231840320_Initial.resx">
       <DependentUpon>201707231840320_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707261801079_AddDescription2ColumnToImagesTable.resx">
+      <DependentUpon>201707261801079_AddDescription2ColumnToImagesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707261804596_AddDescription3ColumnToImagesTable.resx">
+      <DependentUpon>201707261804596_AddDescription3ColumnToImagesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
